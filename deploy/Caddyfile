@@ -17,6 +17,9 @@ piggylabs.io {
 		X-Frame-Options DENY
 		-Server
 	}
+	# The game lives on its own subdomain (its account keys stay with it); these short links lead there
+	@game path /games/slither /games/slither/ /games/soxulcan /games/soxulcan/
+	redir @game https://soxulcan.piggylabs.io/ 302
 	@html path / *.html
 	header @html Cache-Control "no-cache"
 }

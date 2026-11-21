@@ -82,3 +82,14 @@ test('AGENTS.md matches what the server actually enforces', () => {
   assert.match(read('CLAUDE.md'), /^@AGENTS\.md$/m, 'CLAUDE.md must import AGENTS.md');
   assert.ok(fs.existsSync(path.join(ROOT, '.github/pull_request_template.md')), 'AGENTS.md and CLAUDE.md refer to the PR template');
 });
+
+test('the game is linked on every projects page, and the short links redirect to it', () => {
+  for (const f of ['projects.html', 'projects-az.html', 'projects-ru.html']) {
+    const html = read('site/' + f);
+    assert.match(html, /href="https:\/\/soxulcan\.piggylabs\.io"/, `${f} has no Play link`);
+    assert.doesNotMatch(html, /tag paused/, `${f} still says the game is paused`);
+  }
+  const caddy = read('deploy/Caddyfile');
+  assert.match(caddy, /@game path \/games\/slither \/games\/slither\/ \/games\/soxulcan \/games\/soxulcan\//);
+  assert.match(caddy, /redir @game https:\/\/soxulcan\.piggylabs\.io\/ 302/);
+});
