@@ -2,6 +2,8 @@
 
 The front page of [piggylabs.io](https://piggylabs.io): a plain static site (`site/`) with no build step.
 
+Working on it, or pointing an AI agent at it? Read [`AGENTS.md`](AGENTS.md) first.
+
 ## Changing the site
 
 Edit the files in `site/` and open a pull request. CI checks that every link points at a real file, that nothing would break the Content-Security-Policy (no inline scripts, handlers or styles), and that the deploy files agree with each other.

@@ -72,3 +72,13 @@ test('update.sh publishes main, skips what is live, refuses a commit without ind
     assert.ok(left.length <= 2 && left.includes(c), `kept ${left}`);
   } finally { fs.rmSync(tmp, { recursive: true, force: true }); }
 });
+
+test('AGENTS.md matches what the server actually enforces', () => {
+  const agents = read('AGENTS.md'), caddy = read('deploy/Caddyfile');
+  for (const rule of ["default-src 'self'", "script-src 'self'", "style-src 'self'"]) {
+    assert.ok(caddy.includes(rule), `the Caddyfile no longer sends ${rule}`);
+    assert.ok(agents.includes(rule), `AGENTS.md doesn't mention ${rule}`);
+  }
+  assert.match(read('CLAUDE.md'), /^@AGENTS\.md$/m, 'CLAUDE.md must import AGENTS.md');
+  assert.ok(fs.existsSync(path.join(ROOT, '.github/pull_request_template.md')), 'AGENTS.md and CLAUDE.md refer to the PR template');
+});
