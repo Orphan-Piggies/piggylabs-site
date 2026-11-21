@@ -1,0 +1,112 @@
+/* Concept designs: the previews on the front page (.shot) and the demo pages (body.demo).
+   These are artwork with their own fixed palettes, so they don't follow the site's light/dark variables. */
+
+/* ---------- Front-page previews ---------- */
+.shot { position: relative; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 16 / 10; padding: 18px 20px; overflow: hidden; color: #fff; isolation: isolate; }
+.shot:hover { text-decoration: none; }
+.shot::before { content: ""; position: absolute; inset: 0; z-index: -1; transition: transform .8s ease; }
+.shot:hover::before { transform: scale(1.06); }
+.shot::after { content: ""; position: absolute; inset: 0; background: url(grain.svg); opacity: .12; mix-blend-mode: overlay; pointer-events: none; }
+.shot-title { font: 600 26px/1.1 Georgia, "Times New Roman", serif; letter-spacing: -.01em; }
+.shot-sub { margin-top: 4px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
+
+.shot-ember::before { background: radial-gradient(60% 70% at 70% 85%, #ff7a1a 0%, #b3330c 28%, transparent 62%), radial-gradient(40% 40% at 25% 20%, #3a1408 0%, transparent 70%), #0d0705; }
+.shot-ember .shot-title { color: #ffd9a0; }
+.shot-noir::before { background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.22) 50%, transparent 60%), radial-gradient(70% 90% at 30% 20%, #4a4a4a, #0b0b0b 70%); }
+.shot-noir { border-top: 14px solid #000; border-bottom: 14px solid #000; }
+.shot-noir .shot-title { font: 800 40px/1 "Avenir Next Condensed", "Arial Narrow", sans-serif; letter-spacing: .14em; }
+.shot-caspian::before { background: radial-gradient(18% 26% at 70% 58%, #ffe2a8 0%, #ffb56b 45%, transparent 72%), linear-gradient(#1d1f45 0%, #7a3a70 38%, #e2735e 58%, #2b2f5e 60%, #121433 100%); }
+
+/* ---------- Demo pages: shared ---------- */
+body.demo { margin: 0; min-height: 100vh; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+.demo *, .demo *::before, .demo *::after { box-sizing: border-box; }
+.demo a { color: inherit; }
+.demo::after { content: ""; position: fixed; inset: 0; background: url(grain.svg); opacity: .07; mix-blend-mode: overlay; pointer-events: none; z-index: 50; }
+.demo-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 18px; font-size: 13px; background: rgba(0,0,0,.55); color: #fff; backdrop-filter: blur(10px); }
+.demo-bar a { text-decoration: none; font-weight: 600; }
+.demo-bar span { padding: 2px 10px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; letter-spacing: .08em; text-transform: uppercase; font-size: 11px; }
+.d-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.d-section { padding: 96px 0; }
+.d-kicker { margin: 0 0 14px; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; opacity: .7; }
+.d-h2 { margin: 0 0 40px; font: 400 clamp(34px, 5vw, 56px)/1.05 Georgia, "Times New Roman", serif; letter-spacing: -.01em; }
+.d-btn { display: inline-block; padding: 14px 26px; border-radius: 999px; font-weight: 600; text-decoration: none; letter-spacing: .02em; }
+.d-list { list-style: none; margin: 0; padding: 0; }
+.d-list li { display: flex; align-items: baseline; gap: 16px; padding: 18px 0; border-bottom: 1px solid currentColor; border-color: rgba(255,255,255,.14); }
+.d-list b { font: 400 22px/1.3 Georgia, serif; }
+.d-list small { display: block; opacity: .6; font-size: 14px; }
+.d-list .fill { flex: 1; }
+.d-list .p { font-weight: 600; white-space: nowrap; }
+.d-foot { padding: 40px 0 56px; font-size: 13px; opacity: .6; text-align: center; }
+.d-hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; isolation: isolate; }
+.d-hero .d-wrap { width: 100%; padding-bottom: 14vh; }
+.d-hero h1 { margin: 0 0 20px; }
+.d-hero p.sub { max-width: 520px; margin: 0 0 32px; font-size: 19px; opacity: .85; }
+.d-hero .row { display: flex; gap: 12px; flex-wrap: wrap; }
+.bars { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.bars::before, .bars::after { content: ""; position: absolute; left: 0; right: 0; height: 7vh; background: #000; }
+.bars::before { top: 0; }
+.bars::after { bottom: 0; }
+.fade-up { animation: fadeUp 1.4s cubic-bezier(.2,.7,.2,1) both; }
+.fade-up.d2 { animation-delay: .25s; }
+.fade-up.d3 { animation-delay: .5s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Ember (restaurant) ---------- */
+.demo-ember { background: #0b0605; color: #f4e6d6; }
+.demo-ember .d-hero::before { content: ""; position: absolute; inset: -10%; z-index: -1;
+  background: radial-gradient(45% 55% at 72% 88%, #ff8a2a 0%, #c2410c 26%, rgba(120,30,8,.5) 48%, transparent 70%),
+              radial-gradient(30% 30% at 20% 15%, #2a0f07 0%, transparent 70%), #0b0605;
+  animation: ember 6s ease-in-out infinite alternate; }
+@keyframes ember { from { transform: scale(1); filter: brightness(.9); } to { transform: scale(1.05) translateY(-1%); filter: brightness(1.12); } }
+.demo-ember h1 { font: 400 clamp(52px, 9vw, 120px)/.95 Georgia, "Times New Roman", serif; letter-spacing: -.02em; }
+.demo-ember h1 em { background: linear-gradient(90deg, #ffd9a0, #ff8a2a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.demo-ember .d-kicker { color: #ffb36b; }
+.demo-ember .d-btn { background: #ff8a2a; color: #1a0b04; }
+.demo-ember .d-btn.ghost { background: transparent; color: #f4e6d6; border: 1px solid rgba(244,230,214,.4); }
+.demo-ember .d-list .p { color: #ffb36b; }
+.demo-ember .band { background: linear-gradient(90deg, #1a0b06, #2b1209); text-align: center; }
+.demo-ember .band .d-h2 { margin-bottom: 24px; }
+
+/* ---------- Noir (barbershop) ---------- */
+.demo-noir { background: #0a0a0a; color: #ededed; }
+.demo-noir .d-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 80% at 30% 30%, #3d3d3d 0%, #141414 55%, #050505 100%); }
+.demo-noir .d-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.14) 50%, transparent 65%); animation: sweep 7s ease-in-out infinite; }
+@keyframes sweep { from { transform: translateX(-70%); } to { transform: translateX(70%); } }
+.demo-noir h1 { font: 800 clamp(80px, 18vw, 220px)/.85 "Avenir Next Condensed", "Arial Narrow", sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.demo-noir .scene { font: 12px/1 ui-monospace, Menlo, monospace; letter-spacing: .2em; opacity: .6; margin: 0 0 18px; }
+.demo-noir .d-btn { background: #ededed; color: #0a0a0a; }
+.demo-noir .d-btn.ghost { background: transparent; color: #ededed; border: 1px solid #555; }
+.demo-noir .d-h2 { font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.demo-noir .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.demo-noir .frame { aspect-ratio: 3 / 4; border: 1px solid #333; background: repeating-linear-gradient(90deg, #111 0 2px, #161616 2px 6px); display: grid; place-items: center; font: 12px ui-monospace, Menlo, monospace; letter-spacing: .2em; color: #777; }
+
+/* ---------- Caspian House (hotel) ---------- */
+.demo-caspian { background: #121433; color: #fff4ea; }
+.demo-caspian .d-hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(#1b1d42 0%, #5b2f66 30%, #c65a62 52%, #f2a061 60%, #2a2e60 60.2%, #121433 100%); }
+.demo-caspian .sun { position: absolute; left: 74%; top: 38%; width: 22vmin; height: 22vmin; border-radius: 50%; background: radial-gradient(circle, #fff1c9 0%, #ffc37a 45%, rgba(255,150,90,0) 70%); z-index: -1; animation: sun 12s ease-in-out infinite alternate; }
+@keyframes sun { from { transform: translateY(0); } to { transform: translateY(14%); } }
+.demo-caspian .sea { position: absolute; left: 0; right: 0; top: 60%; bottom: 0; z-index: -1; background: repeating-linear-gradient(180deg, rgba(255,200,150,.18) 0 2px, transparent 2px 14px); -webkit-mask-image: linear-gradient(#000, transparent 80%); mask-image: linear-gradient(#000, transparent 80%); animation: sea 5s linear infinite; }
+@keyframes sea { from { background-position: 0 0; } to { background-position: 0 28px; } }
+.demo-caspian h1 { font: 400 clamp(48px, 8vw, 104px)/1 Georgia, "Times New Roman", serif; letter-spacing: -.01em; }
+.demo-caspian .d-kicker { color: #ffc89a; }
+.demo-caspian .d-btn { background: #fff4ea; color: #2a1630; }
+.demo-caspian .d-btn.ghost { background: transparent; color: #fff4ea; border: 1px solid rgba(255,244,234,.45); }
+.demo-caspian .rooms { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px; }
+.demo-caspian .room { border-radius: 18px; overflow: hidden; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); }
+.demo-caspian .room .pic { aspect-ratio: 4 / 3; }
+.demo-caspian .room .pic.a { background: linear-gradient(#f2a061 0%, #c65a62 45%, #2a2e60 46%, #121433 100%); }
+.demo-caspian .room .pic.b { background: radial-gradient(60% 60% at 30% 70%, #3f7a5a, #1d3a2e 70%); }
+.demo-caspian .room .pic.c { background: linear-gradient(135deg, #3a2a52, #a75a72 60%, #f2c38a); }
+.demo-caspian .room div.t { padding: 18px 20px 22px; }
+.demo-caspian .room h3 { margin: 0; font: 400 24px/1.2 Georgia, serif; }
+.demo-caspian .room p { margin: 6px 0 0; opacity: .7; font-size: 15px; }
+.demo-caspian .room .p { margin-top: 12px; opacity: 1; font-weight: 600; color: #ffc89a; }
+
+@media (max-width: 720px) {
+  .demo-noir .split { grid-template-columns: 1fr; }
+  .d-section { padding: 64px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .demo *, .demo *::before, .demo *::after, .demo .d-hero::before, .demo .d-hero::after { animation: none !important; }
+  .shot::before { transition: none; }
+}
