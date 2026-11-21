@@ -47,4 +47,4 @@ caddy validate --config /etc/caddy/Caddyfile && systemctl reload caddy
 
 DNS: an `A` record for `piggylabs.io`, and `www` as a CNAME to it, pointing at the server. Caddy gets the HTTPS certificates by itself on the first request.
 
-**One Caddyfile per server.** If LanSlither runs on the same server again, add its site block (from LanSlither's `deploy/Caddyfile`) to `/etc/caddy/Caddyfile` next to this one; don't replace it.
+**One Caddyfile per server.** If Soxulcan runs on the same server again, add its site block (from the LanSlither repository's `deploy/Caddyfile`) to `/etc/caddy/Caddyfile` next to this one; don't replace it.
