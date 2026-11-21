@@ -59,11 +59,14 @@ CI (`.github/workflows/ci.yml`) runs the tests and the Caddyfile check on every 
 
 1. Run `npm test`, which must pass.
 2. Preview it with `python3 -m http.server -d site 8080`.
-3. Take screenshots with any browser tool, or headless Chrome:
-   ```sh
-   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --window-size=1280,900 --screenshot=desktop.png http://localhost:8080/
-   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --window-size=390,844 --screenshot=phone.png http://localhost:8080/
-   ```
+3. Take screenshots:
+   - **Desktop:** headless Chrome works:
+     ```sh
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1280,900 --screenshot=desktop.png http://localhost:8080/
+     ```
+   - **Phone (390 px):** use Chrome DevTools device mode: open DevTools, press Cmd+Shift+M (Ctrl+Shift+M), set the width to 390, then use the ⋮ menu's "Capture screenshot". Don't use `--window-size=390,…` in headless Chrome: its window can't be narrower than about 500 px, so the shot shows a wider page cut off on the right, which looks like a layout bug that isn't there.
+   - **Dark mode:** in DevTools, open the Rendering tab and set "Emulate CSS prefers-color-scheme" to dark.
+
    Drag the images into the PR description.
 4. After merging, the live site updates within about 2 minutes. Check it at https://piggylabs.io. Browsers may cache HTML for a moment, so reload.
 
