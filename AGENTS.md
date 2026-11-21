@@ -77,7 +77,7 @@ CI (`.github/workflows/ci.yml`) runs the tests and the Caddyfile check on every 
 - **`update.sh`:** the clone on the droplet follows `main`, so the next run picks up a merged change by itself. Keep it safe to run repeatedly, and keep the test in `test/site.test.js` up to date.
 - **`Caddyfile` and the systemd units:** these are **copied by hand** onto the server (see `README.md`). Merging doesn't apply them. Say so in the PR, so the person with server access installs them.
 - **Never weaken the security headers** without an issue explaining why.
-- **The server also hosts the LanSlither game** (paused for now). Its Caddy site block goes *next to* this one in the same `/etc/caddy/Caddyfile`. Never write a change that would remove it.
+- **The server also hosts the Soxulcan game** (repository: LanSlither) (paused for now). Its Caddy site block goes *next to* this one in the same `/etc/caddy/Caddyfile`. Never write a change that would remove it.
 
 ## Server access
 
