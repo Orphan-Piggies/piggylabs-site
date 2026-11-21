@@ -1,0 +1,30 @@
+# Publishes the newest commit on main (deploy/update.sh). Started by piggylabs-update.timer. Install: see README.md
+[Unit]
+Description=Piggy Labs: publish the newest commit on main
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=piggylabs-deploy
+Group=piggylabs-deploy
+# Releases must be readable by Caddy
+UMask=0022
+# The script runs from the clone; the site's own copy ships with each commit
+ExecStart=/opt/piggylabs/repo/deploy/update.sh
+TimeoutStartSec=5min
+# It only needs to write its own folder; it never needs privileges (no sudo: Caddy reads the files directly)
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/piggylabs
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictNamespaces=true
+CapabilityBoundingSet=

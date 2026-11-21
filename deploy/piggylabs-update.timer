@@ -1,0 +1,11 @@
+# Checks main for a new commit every 2 minutes. Install: see README.md
+[Unit]
+Description=Piggy Labs: check main for a new commit
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=2min
+RandomizedDelaySec=15s
+
+[Install]
+WantedBy=timers.target

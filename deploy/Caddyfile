@@ -1,0 +1,26 @@
+# /etc/caddy/Caddyfile for piggylabs.io. Caddy gets and renews the HTTPS certificates by itself.
+piggylabs.io {
+	root * /opt/piggylabs/releases/current
+	encode zstd gzip
+	file_server {
+		hide .*
+	}
+	handle_errors 404 {
+		rewrite * /404.html
+		file_server
+	}
+	header {
+		Strict-Transport-Security "max-age=86400"
+		Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options DENY
+		-Server
+	}
+	@html path / *.html
+	header @html Cache-Control "no-cache"
+}
+
+www.piggylabs.io {
+	redir https://piggylabs.io{uri} permanent
+}

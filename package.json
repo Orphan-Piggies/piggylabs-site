@@ -1,0 +1,6 @@
+{
+  "name": "piggylabs-site",
+  "private": true,
+  "description": "The piggylabs.io front page, and how the droplet publishes it",
+  "scripts": { "test": "node --test" }
+}
