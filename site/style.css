@@ -27,7 +27,11 @@ h1 { margin: 0 0 16px; font-size: clamp(32px, 6vw, 52px); line-height: 1.1; lett
 .button:hover { text-decoration: none; filter: brightness(1.05); }
 
 h2 { margin: 0 0 20px; font-size: 24px; }
-.projects, .about { padding: 32px 0; border-top: 1px solid var(--line); }
+.projects, .services, .about { padding: 32px 0; border-top: 1px solid var(--line); }
+.services .cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.intro { max-width: 640px; margin: -8px 0 20px; color: var(--muted); }
+.card .price { margin: 6px 0 0; color: var(--accent); font-size: 24px; font-weight: 700; }
+.card .price span { color: var(--muted); font-size: 14px; font-weight: 400; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
 .card h3 { margin: 0; font-size: 19px; }
